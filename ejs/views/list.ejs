@@ -1,0 +1,36 @@
+<%- include('header') -%>
+
+    <div class='box' id='heading'>
+        <h1> <%= listTitle %> </h1>
+    </div>
+    <div class='box'>
+        <% for(let i=0; i<newListItems.length; i++) { %>
+        <div class='item'>
+            <input type='checkbox'>
+            <p><%= newListItems[i] %></p>
+        </div>
+        <% } %>
+        <form class='item' action='/' method='post'>
+
+            <input type='text' name='newItem' placeholder='New Item'>
+            <button type='submit' name='list' value=<%= listTitle %>>+</button>
+        </form>
+    </div>
+
+<%- include('footer') -%>
+
+<!-- When we first load up our home page we go through this route and we render list passing in
+2 variables, one called kindOfDay and another called newListItems. Now newListItems is set to equal
+the items array which starts off containing three strings buy food, cook food, eat food and this gets
+passed in to list.ejs under variable name newListItems and over here we have a for loop that loops 
+through entire length of newListItems array and it renders a new li for each item inside the array.
+
+When we click the submit button, our form will make a post request to the home route and it will
+post the value of our text input which has a name newItem. 
+When this request is received it gets caught inside the app.post section and we tap into the request,
+looking through the body of the post request and search for the value of something called newItem, save
+it in a variable item and add that to items array and then redirect to home route. So now we go back 
+over here and render list.ejs again, passing over the updated items array. -->
+
+<!-- Fundamental job of templating: Passing data from the server to our template and populating
+it with dynamic content -->
